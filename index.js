@@ -37,6 +37,7 @@ document.getElementById('settings-form').addEventListener('submit', (event) => {
 	document.getElementById('settings-form').style.display = 'none'
 	document.getElementById('toggle-settings').style.display = 'block'
 	localStorage.removeItem('weatherData')
+	fetchAPI()
 })
 
 const settings = JSON.parse(localStorage.getItem('settings')) || {
@@ -122,7 +123,7 @@ async function fetchAPI() {
 }
 
 function updateWeather(data) {
-	const temperature = Math.round(data.current.temperature_2m)
+	const temperature = Math.round(data.current.temperature)
 	const weatherCode = data.current.weather_code
 	const now = new Date()
 	const isDaytime = now.getHours() >= 6 && now.getHours() < 18
